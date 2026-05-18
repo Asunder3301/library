@@ -1,6 +1,14 @@
+h3 {
+    margin: 0;
+    max-width: 85%;
+    text-align: center;
+    font-size: clamp(1.45rem, 24px, 1.75rem); 
+    color: rgb(0, 0, 0);
+ }
+
 p {
     margin: 0;
-    font-size: clamp(1rem, 2vw, 1.45rem);
+    font-size: clamp(1rem, 20px, 1.45rem);
     font-weight: 475;
     color: rgb(255, 255, 255);
 }
@@ -33,13 +41,14 @@ body {
     background-color: rgba(179, 139, 109, 0.95);
 }
 
-#add-btn {
+#add-btn, .card {
     margin: 10px auto;
     border-radius: 5px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 3px;
     height: 150px;
     width: 100%;
     max-width: 250px;
