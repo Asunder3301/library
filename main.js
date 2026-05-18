@@ -18,3 +18,33 @@ function addBook(title, author, pages, read) {
 
 addBook("The Plague", "Albert Camus", 500, true);
 addBook("The Poetics of Space", "Gaston Bachlard", 525, true);
+
+function displayBooks(array) {
+    const container = document.querySelector("#container");
+    for(let i = 0; i < array.length; i++) {
+        let card = document.createElement("div");
+        card.classList.add("card");
+
+        let title = document.createElement("h3");
+        title.textContent = array[i].title;
+        card.appendChild(title);
+
+        let author = document.createElement("p");
+        author.textContent = array[i].author;
+        card.appendChild(author);
+
+        let pages = document.createElement("p");
+        pages.textContent = array[i].pages;
+        card.appendChild(pages);
+
+        let read = document.createElement("p");
+        if(array[i].read === true) {
+            read.textContent = "Read: Yes";
+        } else {
+            read.textContent = "Read: No";
+        }
+        card.appendChild(read);
+
+        container.appendChild(card);
+    }
+}
