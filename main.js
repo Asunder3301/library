@@ -11,3 +11,10 @@ function Book(title, author, pages, read, id) {
     this.read = read;
     this.id = id;
 }
+
+function addBook(title, author, pages, read) {
+    myLibrary.push(new Book(title, author, pages, read, id = crypto.randomUUID()));
+}
+
+addBook("The Plague", "Albert Camus", 500, true);
+addBook("The Poetics of Space", "Gaston Bachlard", 525, true);
