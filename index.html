@@ -26,24 +26,34 @@
                 <fieldset>
                     <legend>Book Information</legend>
 
-                    <label for="title">Book Title:</label>
-                    <input type="text" id="title" name="title" placeholder="The Stranger">
+                    <div class="form-group">
+                        <label for="title">Book Title:</label>
+                        <input type="text" id="title" name="title" placeholder="The Stranger">
+                    </div>
 
-                    <label for="author">Book Author:</label>
-                    <input type="text" id="author" name="author" placeholder="Albert Camus">
+                    <div class="form-group">
+                        <label for="author">Book Author:</label>
+                        <input type="text" id="author" name="author" placeholder="Albert Camus">
+                    </div>
 
-                    <label for="pages">Number of Pages:</label>
-                    <input type="number" id="pages" name="pages" min="0" value="100">
+                    <div class="form-group">
+                        <label for="pages">Number of Pages:</label>
+                        <input type="number" id="pages" name="pages" min="0" value="100">
+                    </div>  
                 </fieldset>
 
                 <fieldset>
                     <legend>Have You Read This Book?</legend>
 
-                    <input type="radio" id="yes" name="read" value="true" checked>
-                    <label for="yes">Yes</label>
+                    <div class="form-group">
+                        <input type="radio" id="yes" name="read" value="true" checked>
+                        <label for="yes">Yes</label>
+                    </div>
 
-                    <input type="radio" id="no" name="read" value="false">
-                    <label for="no">No</label>
+                    <div class="form-group">
+                        <input type="radio" id="no" name="read" value="false">
+                        <label for="no">No</label>
+                    </div>
                 </fieldset>
 
                 <button command="close" commandfor="book-form" type="submit">Submit</button>
