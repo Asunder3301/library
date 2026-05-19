@@ -10,7 +10,7 @@
 </head>
 <body>
     <div id="container">
-        <div id="add-btn" class="card">
+        <button command="show-modal" commandfor="book-form" type="button" id="add-btn" class="card">
             <p>Add Book</p>
             <svg width="64px" height="64px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -18,7 +18,37 @@
                     <path d="M6 12H18M12 6V18" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> 
                 </g>
             </svg>
-        </div>
+        </button>
+
+        <dialog id="book-form" closeby="none">
+            <button command="close" commandfor="book-form" type="button">x</button>
+            <form method="dialog" autofocus>
+                <fieldset>
+                    <legend>Book Information</legend>
+
+                    <label for="title">Book Title:</label>
+                    <input type="text" id="title" name="title" placeholder="The Stranger">
+
+                    <label for="author">Book Author:</label>
+                    <input type="text" id="author" name="author" placeholder="Albert Camus">
+
+                    <label for="pages">Number of Pages:</label>
+                    <input type="number" id="pages" name="pages" min="0" value="100">
+                </fieldset>
+
+                <fieldset>
+                    <legend>Have You Read This Book?</legend>
+
+                    <input type="radio" id="yes" name="read" value="true" checked>
+                    <label for="yes">Yes</label>
+
+                    <input type="radio" id="no" name="read" value="false">
+                    <label for="no">No</label>
+                </fieldset>
+
+                <button command="close" commandfor="book-form" type="submit">Submit</button>
+            </form>
+        </dialog>
     </div>
     <p>Photo by 
         <a href="https://unsplash.com/@inakihxz?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Iñaki del Olmo</a>

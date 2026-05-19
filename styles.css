@@ -44,6 +44,8 @@ body {
     background-color: rgba(179, 139, 109, 0.95);
 }
 
+button { border: none; }
+
 #add-btn, .card {
     margin: 0 auto;
     border-radius: 5px;
@@ -58,10 +60,6 @@ body {
     background-color: rgb(153, 101, 21);
 }
 
-#add-btn:hover {
-    cursor: pointer;
-}
+#add-btn:hover { cursor: pointer; }
 
-#add-btn:active {
-    background-color: rgb(134, 92, 28);
-}
+#add-btn:active { background-color: rgb(134, 92, 28); }
