@@ -19,6 +19,14 @@ function addBook(title, author, pages, read) {
 
 }
 
+function removeBook(bookId) {
+    const bookIndex = myLibrary.findIndex(book => book.id === bookId);
+    if (bookIndex > -1) { myLibrary.splice(bookIndex, 1); }
+    
+    const card = document.querySelector(`[data-id="${bookId}"]`);
+    if (card) { card.remove(); }
+}
+
 addBook("The Plague", "Albert Camus", 500, "true");
 addBook("The Poetics of Space", "Gaston Bachlard", 525, "true");
 
@@ -27,6 +35,7 @@ function displayBook(book) {
         
     const card = document.createElement("div");
     card.classList.add("card");
+    card.dataset.id = book.id;
 
     const title = document.createElement("h3");
     title.textContent = book.title;
@@ -41,12 +50,7 @@ function displayBook(book) {
     card.appendChild(pages);
 
     const read = document.createElement("p");
-    if(book.read === "true") {
-        read.textContent = "Read: Yes";
-    } else {
-        read.textContent = "Read: No";
-    }
-
+    read.textContent = book.read === "true" ? "Read: Yes" : "Read: No";
     card.appendChild(read);
 
     const btnContainer = document.createElement("div");
@@ -59,9 +63,9 @@ function displayBook(book) {
     const remove = document.createElement("button");
     remove.classList.add("remove");
     btnContainer.appendChild(remove);
+    remove.addEventListener("click", () => { removeBook(book.id); });
 
     card.appendChild(btnContainer);
-
     container.appendChild(card);
 }
 
