@@ -56,6 +56,9 @@ form.addEventListener("submit", (e) => {
     const formData = new FormData(form);
     const data = Object.fromEntries(formData);
 
+    addBook(title = data.title, author = data.author, 
+            pages = data.pages, read = data.read);
+
     form.reset();
 })
 
