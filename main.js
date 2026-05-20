@@ -48,3 +48,19 @@ function displayBooks(array) {
         container.appendChild(card);
     }
 }
+
+const dialog = document.getElementById("form-container");
+const form = document.getElementById("form");
+
+form.addEventListener("submit", (e) => {
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData);
+
+    form.reset();
+})
+
+dialog.addEventListener("close", () => {
+    if (dialog.returnValue !== "submit") {
+        form.reset();
+    }
+})
