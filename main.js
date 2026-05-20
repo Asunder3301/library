@@ -25,28 +25,42 @@ addBook("The Poetics of Space", "Gaston Bachlard", 525, "true");
 function displayBook(book) {
     const container = document.querySelector("#container");
         
-    let card = document.createElement("div");
+    const card = document.createElement("div");
     card.classList.add("card");
 
-    let title = document.createElement("h3");
+    const title = document.createElement("h3");
     title.textContent = book.title;
     card.appendChild(title);
 
-    let author = document.createElement("p");
+    const author = document.createElement("p");
     author.textContent = book.author;
     card.appendChild(author);
 
-    let pages = document.createElement("p");
+    const pages = document.createElement("p");
     pages.textContent = book.pages;
     card.appendChild(pages);
 
-    let read = document.createElement("p");
+    const read = document.createElement("p");
     if(book.read === "true") {
         read.textContent = "Read: Yes";
     } else {
         read.textContent = "Read: No";
     }
+
     card.appendChild(read);
+
+    const btnContainer = document.createElement("div");
+    btnContainer.id = "btn-container";
+
+    const toggle = document.createElement("button");
+    toggle.classList.add("toggle");
+    btnContainer.appendChild(toggle)
+
+    const remove = document.createElement("button");
+    remove.classList.add("remove");
+    btnContainer.appendChild(remove);
+
+    card.appendChild(btnContainer);
 
     container.appendChild(card);
 }
