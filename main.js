@@ -29,9 +29,6 @@ function removeBook(bookId) {
     if (card) { card.remove(); }
 }
 
-addBook("The Plague", "Albert Camus", 500, "true");
-addBook("The Poetics of Space", "Gaston Bachlard", 525, "true");
-
 function displayBook(book) {
     const container = document.querySelector("#container");
         
