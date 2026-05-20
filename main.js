@@ -13,40 +13,42 @@ function Book(title, author, pages, read, id) {
 }
 
 function addBook(title, author, pages, read) {
-    myLibrary.push(new Book(title, author, pages, read, id = crypto.randomUUID()));
+    const book = new Book(title, author, pages, read, id = crypto.randomUUID());
+    myLibrary.push(book);
+    displayBook(book);
+
 }
 
-addBook("The Plague", "Albert Camus", 500, true);
-addBook("The Poetics of Space", "Gaston Bachlard", 525, true);
+addBook("The Plague", "Albert Camus", 500, "true");
+addBook("The Poetics of Space", "Gaston Bachlard", 525, "true");
 
-function displayBooks(array) {
+function displayBook(book) {
     const container = document.querySelector("#container");
-    for(let i = 0; i < array.length; i++) {
-        let card = document.createElement("div");
-        card.classList.add("card");
+        
+    let card = document.createElement("div");
+    card.classList.add("card");
 
-        let title = document.createElement("h3");
-        title.textContent = array[i].title;
-        card.appendChild(title);
+    let title = document.createElement("h3");
+    title.textContent = book.title;
+    card.appendChild(title);
 
-        let author = document.createElement("p");
-        author.textContent = array[i].author;
-        card.appendChild(author);
+    let author = document.createElement("p");
+    author.textContent = book.author;
+    card.appendChild(author);
 
-        let pages = document.createElement("p");
-        pages.textContent = array[i].pages;
-        card.appendChild(pages);
+    let pages = document.createElement("p");
+    pages.textContent = book.pages;
+    card.appendChild(pages);
 
-        let read = document.createElement("p");
-        if(array[i].read === true) {
-            read.textContent = "Read: Yes";
-        } else {
-            read.textContent = "Read: No";
-        }
-        card.appendChild(read);
-
-        container.appendChild(card);
+    let read = document.createElement("p");
+    if(book.read === "true") {
+        read.textContent = "Read: Yes";
+    } else {
+        read.textContent = "Read: No";
     }
+    card.appendChild(read);
+
+    container.appendChild(card);
 }
 
 const dialog = document.getElementById("form-container");
@@ -60,10 +62,10 @@ form.addEventListener("submit", (e) => {
             pages = data.pages, read = data.read);
 
     form.reset();
-})
+});
 
 dialog.addEventListener("close", () => {
     if (dialog.returnValue !== "submit") {
         form.reset();
     }
-})
+});
