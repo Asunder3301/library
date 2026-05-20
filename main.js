@@ -12,6 +12,8 @@ function Book(title, author, pages, read, id) {
     this.id = id;
 }
 
+Book.prototype.toggleRead = function() { this.read = this.read === "true" ? "false" : "true"; }
+
 function addBook(title, author, pages, read) {
     const book = new Book(title, author, pages, read, id = crypto.randomUUID());
     myLibrary.push(book);
@@ -58,7 +60,12 @@ function displayBook(book) {
 
     const toggle = document.createElement("button");
     toggle.classList.add("toggle");
-    btnContainer.appendChild(toggle)
+    btnContainer.appendChild(toggle);
+
+    toggle.addEventListener("click", () => { 
+        book.toggleRead();
+        read.textContent = book.read === "true" ? "Read: Yes" : "Read: No";
+    });
 
     const remove = document.createElement("button");
     remove.classList.add("remove");
