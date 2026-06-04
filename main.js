@@ -9,11 +9,11 @@ class Book {
         this.id = id; 
     }
 
-    toggleRead() { this.read = this.read === "true" ? "false" : "true"; }
+    toggleRead() { this.read = !this.read; }
 }
 
 function addBook(title, author, pages, read) {
-    const book = new Book(title, author, pages, read, id = crypto.randomUUID());
+    const book = new Book(title, author, pages, read, crypto.randomUUID());
     myLibrary.push(book);
     displayBook(book);
 
@@ -47,7 +47,7 @@ function displayBook(book) {
     card.appendChild(pages);
 
     const read = document.createElement("p");
-    read.textContent = book.read === "true" ? "Read: Yes" : "Read: No";
+    read.textContent = book.read === true ? "Read: Yes" : "Read: No";
     card.appendChild(read);
 
     const btnContainer = document.createElement("div");
@@ -59,7 +59,7 @@ function displayBook(book) {
 
     toggle.addEventListener("click", () => { 
         book.toggleRead();
-        read.textContent = book.read === "true" ? "Read: Yes" : "Read: No";
+        read.textContent = book.read === true ? "Read: Yes" : "Read: No";
     });
 
     const remove = document.createElement("button");
