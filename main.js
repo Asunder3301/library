@@ -89,3 +89,19 @@ dialog.addEventListener("close", () => {
         form.reset();
     }
 });
+
+class Validator {
+    static validateInput(element, displayElement, message, eventType, errorType) {
+        element.addEventListener(eventType, () => {
+            if (element.validity.errorType) {
+                displayElement.textContent = message;
+                displayElement.classList.add("error");
+            } else {
+                displayElement.textContent = "";
+            }
+        })
+    }
+}
+
+const spans = document.querySelectorAll(".message");
+console.log(spans)
