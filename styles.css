@@ -126,6 +126,15 @@ input[type="text"], input[type="number"] {
     background: rgb(58, 58, 58);
  }
 
+.error {
+    margin-top: 0.25rem;
+    border-radius: 0 0 0.35rem 0.35rem;
+    min-height: 1rem;
+    height: 100%;
+    background-color: rgb(113 0 0);
+    text-align: center;
+}
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     -webkit-appearance: none;
