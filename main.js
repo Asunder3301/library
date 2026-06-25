@@ -12,6 +12,42 @@ class Book {
     toggleRead() { this.read = !this.read; }
 }
 
+class Validator {
+    static valueMissing(elementID, displayElement, message, eventType) {
+        const element = document.getElementById(elementID);
+
+        element.addEventListener(eventType, () => {
+            if (element.validity.valueMissing) {
+                this.#displayMessage(displayElement, message);
+                displayElement.classList.add("error");
+            } else {
+                displayElement.textContent = "";
+            }
+        })
+    }
+
+    static rangeUnderflow(elementID, displayElement, message, eventType) {
+        const element = document.getElementById(elementID);
+
+        element.addEventListener(eventType, () => {
+            if (element.validity.rangeUnderflow) {
+                displayElement.textContent = message;
+                displayElement.classList.add("error");
+            } else {
+                displayElement.textContent = "";
+            }
+        })
+    }
+
+    static onSubmit(element, message, data) {
+        if (data === "") { this.#displayMessage(element, message); }
+    }
+
+    static #displayMessage(element, message) {
+        element.textContent = `Enter the ${message} of a book`;
+    }
+}
+
 function addBook(title, author, pages, read) {
     const book = new Book(title, author, pages, read, crypto.randomUUID());
     myLibrary.push(book);
@@ -73,10 +109,20 @@ function displayBook(book) {
 
 const dialog = document.getElementById("form-container");
 const form = document.getElementById("form");
+const spans = document.querySelectorAll(".message");
 
-form.addEventListener("submit", (e) => {
+form.addEventListener("submit", (event) => {
     const formData = new FormData(form);
     const data = Object.fromEntries(formData);
+
+    if (data.title === "" || data.author === "" || data.pages === "") {
+        Validator.onSubmit(spans[0], "title", data.title)
+        Validator.onSubmit(spans[1], "author", data.author);
+        Validator.onSubmit(spans[2], "pages", data.pages);
+        
+        event.preventDefault();
+        return;
+    }
 
     addBook(title = data.title, author = data.author, 
             pages = data.pages, read = data.read);
@@ -90,18 +136,7 @@ dialog.addEventListener("close", () => {
     }
 });
 
-class Validator {
-    static validateInput(element, displayElement, message, eventType, errorType) {
-        element.addEventListener(eventType, () => {
-            if (element.validity.errorType) {
-                displayElement.textContent = message;
-                displayElement.classList.add("error");
-            } else {
-                displayElement.textContent = "";
-            }
-        })
-    }
-}
-
-const spans = document.querySelectorAll(".message");
-console.log(spans)
+Validator.valueMissing("title", spans[0], "title", "input");
+Validator.valueMissing("author", spans[1], "author", "input");
+Validator.valueMissing("pages", spans[2], "pages", "input");
+Validator.rangeUnderflow("pages", spans[2], "Enter a number greater than 0.", "input");
