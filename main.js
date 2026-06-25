@@ -19,9 +19,8 @@ class Validator {
         element.addEventListener(eventType, () => {
             if (element.validity.valueMissing) {
                 this.#displayMessage(displayElement, message);
-                displayElement.classList.add("error");
             } else {
-                displayElement.textContent = "";
+                this.#removeMessage(displayElement);
             }
         })
     }
@@ -34,17 +33,27 @@ class Validator {
                 displayElement.textContent = message;
                 displayElement.classList.add("error");
             } else {
-                displayElement.textContent = "";
+                this.#removeMessage(displayElement);
             }
         })
     }
 
     static onSubmit(element, message, data) {
-        if (data === "") { this.#displayMessage(element, message); }
+        if (data === "") { 
+            this.#displayMessage(element, message);
+        } else {
+            this.#removeMessage(element);
+        }
     }
 
     static #displayMessage(element, message) {
         element.textContent = `Enter the ${message} of a book`;
+        element.classList.add("error");
+    }
+
+    static #removeMessage(element) {
+        element.textContent = "";
+        element.classList.remove("error");
     }
 }
 
